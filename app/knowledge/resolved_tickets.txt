@@ -1,0 +1,29 @@
+Resolved Tickets
+
+Ticket 1001
+
+Issue:
+Customer was charged twice.
+
+Resolution:
+Duplicate payment refunded.
+
+----------------------------------------
+
+Ticket 1002
+
+Issue:
+Package delayed.
+
+Resolution:
+Tracking number sent to customer.
+
+----------------------------------------
+
+Ticket 1003
+
+Issue:
+Account locked.
+
+Resolution:
+Password reset email sent.

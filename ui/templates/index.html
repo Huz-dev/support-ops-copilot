@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SupportOps Copilot</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+<div id="loadingScreen" class="loading-screen hidden">
+
+    <h1>SupportOps AI</h1>
+
+    <div id="loadingTimeline">
+
+    </div>
+
+</div>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+
+    {% include "sidebar.html" %}
+
+    <!-- Main -->
+
+    <main class="main">
+
+        <header>
+
+            <div>
+
+                <h1>AI Support Operations Copilot</h1>
+
+                <p>
+                    Analyze customer tickets, execute tools and draft responses.
+                </p>
+
+            </div>
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                AI Online
+
+            </div>
+
+        </header>
+
+        <!-- Ticket -->
+
+        <section class="ticket-card">
+                <h2>Customer Ticket</h2>
+
+                    <div class="demo-ticket">
+
+                    <select id="ticketSelect">
+
+                     <option value="">
+                        Select Demo Ticket...
+                    </option>
+
+                 </select>
+
+                <button id="loadTicket">
+
+             Load Ticket
+
+            </button>
+
+        </div>
+
+        <textarea
+            id="ticket"
+            placeholder="Paste the customer ticket here..."
+        ></textarea>
+
+        <button id="analyzeBtn">
+
+            Analyze Ticket
+
+        </button>
+            
+
+                
+
+        </section>
+
+        <!-- Stats -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <h4>Category</h4>
+
+                <span id="category">
+                    --
+                </span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h4>Urgency</h4>
+
+                <span id="urgency">
+                    --
+                </span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h4>Confidence</h4>
+
+                <span id="confidence">
+                    --
+                </span>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h4>Tools</h4>
+
+                <span id="tools">
+                    --
+                </span>
+
+            </div>
+
+        </section>
+
+        <!-- Dashboard -->
+
+        <section class="dashboard">
+
+    <div class="card">
+
+        <h3>Customer Information</h3>
+
+        <div class="info-row">
+            <span>Name</span>
+            <strong id="customerName">-</strong>
+        </div>
+
+        <div class="info-row">
+            <span>Email</span>
+            <strong id="customerEmail">-</strong>
+        </div>
+
+        <div class="info-row">
+            <span>Issue</span>
+            <strong id="customerIssue">-</strong>
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h3>Order Information</h3>
+
+        <div class="info-row">
+            <span>Order ID</span>
+            <strong id="orderId">-</strong>
+        </div>
+
+        <div class="info-row">
+            <span>Status</span>
+            <strong id="orderStatus">-</strong>
+        </div>
+
+        <div class="info-row">
+            <span>Refund</span>
+            <strong id="refundStatus">-</strong>
+        </div>
+
+    </div>
+
+   
+    <div class="card full">
+
+        <h3>Email Preview</h3>
+
+        <div id="emailCard">
+
+            Waiting...
+
+        </div>
+
+    </div>
+
+ <div class="card full">
+
+    <button
+        class="timeline-btn"
+        onclick="toggleTimeline()"
+    >
+        Show Execution Timeline ▼
+    </button>
+
+    <div
+        id="timelineContainer"
+        style="display:none;"
+    >
+
+        <h3>Execution Timeline</h3>
+
+        <div id="timeline">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+        <!-- Chat -->
+
+
+    </main>
+
+</div>
+
+<div id="approvalModal" class="modal hidden">
+
+    <div class="modal-content">
+
+        <h2>Human Approval Required</h2>
+
+        <p id="approvalReason"></p>
+
+        <div class="modal-buttons">
+
+            <button id="approveBtn">
+                Approve
+            </button>
+
+            <button id="rejectBtn">
+                Reject
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+<script>
+
+function toggleTimeline(){
+
+    const timeline =
+        document.getElementById(
+            "timelineContainer"
+        );
+
+    const button =
+        document.querySelector(
+            ".timeline-btn"
+        );
+
+    if(
+        timeline.style.display==="none"
+    ){
+
+        timeline.style.display="block";
+
+        button.innerHTML =
+            "Hide Execution Timeline ▲";
+
+    }
+    else{
+
+        timeline.style.display="none";
+
+        button.innerHTML =
+            "Show Execution Timeline ▼";
+    }
+}
+
+</script>
+
+</body>
+
+</html>

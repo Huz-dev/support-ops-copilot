@@ -92,6 +92,11 @@ class RAGService:
         )
 
         return {
-            "answer": answer,
-            "retrieved": retrieved,
-        }
+        "answer": answer,
+        "context": context,
+        "retrieved": retrieved,
+        "sources": [
+            r["metadata"]["source"]
+            for r in retrieved
+        ],
+    }

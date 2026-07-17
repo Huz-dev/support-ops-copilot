@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SupportOps Logs</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+
+     {% include "sidebar.html" %}
+
+    <!-- Main -->
+
+    <main class="main">
+
+        <header>
+
+            <div>
+
+                <h1>SupportOps Logs</h1>
+
+                <p>
+                    View AI sessions and tool execution history.
+                </p>
+
+            </div>
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                Logging Active
+
+            </div>
+
+        </header>
+
+        <!-- Tabs -->
+
+        <div class="logs-tabs">
+
+            <button
+                class="tab-btn active"
+                onclick="showTab('sessions')"
+            >
+                Sessions
+            </button>
+
+            <button
+                class="tab-btn"
+                onclick="showTab('tools')"
+            >
+                Tool Calls
+            </button>
+
+        </div>
+
+        <!-- Sessions -->
+
+        <div id="sessions">
+
+           {% for session in sessions %}
+
+<div class="session-card">
+
+    <div class="session-header">
+
+        <h3>
+            Session {{ loop.index }}
+        </h3>
+
+        <span class="badge">
+            {{ session.classification.category }}
+        </span>
+
+    </div>
+
+    <div class="session-grid">
+
+        <div>
+            <p class="label">Customer</p>
+            <p>{{ session.extraction.customer_name }}</p>
+        </div>
+
+        <div>
+            <p class="label">Email</p>
+            <p>{{ session.extraction.email }}</p>
+        </div>
+
+        <div>
+            <p class="label">Order</p>
+            <p>{{ session.extraction.order_id }}</p>
+        </div>
+
+        <div>
+            <p class="label">Urgency</p>
+            <p>{{ session.classification.urgency }}</p>
+        </div>
+
+    </div>
+
+    <button
+        onclick="toggle(this.dataset.index)"
+        data-index="{{ loop.index }}"
+        class="view-btn"
+    >
+        View Details
+    </button>
+
+    <div
+        id="session{{loop.index}}"
+        style="display:none;"
+    >
+
+        <h4>Ticket</h4>
+
+        <div class="ticket-box">
+            {{ session.ticket }}
+        </div>
+
+        <h4>Tools Used</h4>
+
+        <ul>
+
+            {% for tool in session.tool_results %}
+
+            <li>
+                {{ tool.tool }}
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        <h4>Email Draft</h4>
+
+        <div class="email-box">
+            {{ session.email.body }}
+        </div>
+
+    </div>
+
+</div>
+
+{% endfor %}
+
+        </div>
+
+        <!-- Tool Calls -->
+
+        <div
+            id="tools"
+            style="display:none;"
+        >
+
+            {% for tool in tools %}
+
+            <div class="card full">
+
+                <pre>{{ tool }}</pre>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+
+function toggle(index){
+
+    const details = document.getElementById(
+        "session" + index
+    );
+
+    if (!details) {
+        return;
+    }
+
+    details.style.display =
+        details.style.display === "none" || details.style.display === ""
+            ? "block"
+            : "none";
+
+}
+
+function showTab(tab){
+
+    document.getElementById(
+        "sessions"
+    ).style.display = "none";
+
+    document.getElementById(
+        "tools"
+    ).style.display = "none";
+
+    document
+        .querySelectorAll(".tab-btn")
+        .forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+    document.getElementById(
+        tab
+    ).style.display = "block";
+
+    event.target.classList.add(
+        "active"
+    );
+}
+
+</script>
+
+<script>
+function toggle(id){
+
+    const el = document.getElementById(
+        "session"+id
+    );
+
+    if(
+        el.style.display==="none"
+    ){
+
+        el.style.display="block";
+
+    }else{
+
+        el.style.display="none";
+    }
+}
+</script>
+
+</body>
+
+</html> 

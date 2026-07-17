@@ -60,3 +60,13 @@ print("=" * 60)
 print("EMAIL")
 print("=" * 60)
 pprint(result["email"])
+
+print()
+print("=" * 60)
+print("MEMORY")
+print("=" * 60)
+
+for m in result["memory"]:
+    print(f'{m["role"]}:')
+    print(m["content"])
+    print()

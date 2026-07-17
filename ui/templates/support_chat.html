@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Support Agent</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    {% include "sidebar.html" %}
+
+    <main class="main">
+
+        <header>
+
+            <div>
+
+                <h1>Support Agent</h1>
+
+                <p>
+                    Your AI assistant for customer support operations.
+
+                </p>
+
+            </div>
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                Online
+
+            </div>
+
+        </header>
+
+        <section class="card full chat-card">
+
+            <div
+                id="chatMessages"
+                class="chat-messages"
+            >
+
+                <div class="message ai">
+
+                    <strong>
+                        SupportOps AI
+                    </strong>
+
+                    <p>
+                        Hello! I can help with:
+
+                        <br><br>
+
+                        • Order status
+                        <br>
+                        • Customer lookup
+                        <br>
+                        • Refund requests
+                        <br>
+                        • Ticket analysis
+                        <br>
+                        • Support questions
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="chat-input">
+
+                <input
+                    id="message"
+                    type="text"
+                    placeholder="
+                    Ask about order 92381..."
+                >
+
+                <button
+                    onclick="sendMessage()"
+                    id="sendBtn"
+                >
+                    Send
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script>
+
+function addMessage(
+    text,
+    type
+){
+
+    const box =
+        document.getElementById(
+            "chatMessages"
+        );
+
+   box.innerHTML += `
+    <div class="message ${type}">
+        <div class="markdown">
+            ${marked.parse(text)}
+        </div>
+    </div>
+    `;
+
+    box.scrollTop =
+        box.scrollHeight;
+}
+
+async function sendMessage(){
+
+    const input =
+        document.getElementById(
+            "message"
+        );
+
+    const message =
+        input.value.trim();
+
+    if(!message){
+        return;
+    }
+
+    addMessage(
+        message,
+        "user"
+    );
+
+    input.value = "";
+
+    addMessage(
+        "Thinking...",
+        "ai loading"
+    );
+
+    const response =
+        await fetch(
+            "/support-agent-chat",
+            {
+                method:"POST",
+
+                headers:{
+                    "Content-Type":
+                    "application/json"
+                },
+
+                body:JSON.stringify({
+                    message
+                })
+            }
+        );
+
+    const data =
+        await response.json();
+
+    const loading =
+        document.querySelector(
+            ".loading:last-child"
+        );
+
+    if(loading){
+        loading.remove();
+    }
+
+    addMessage(
+        data.reply,
+        "ai"
+    );
+}
+
+document
+.getElementById(
+    "message"
+)
+.addEventListener(
+    "keypress",
+    function(e){
+
+        if(
+            e.key==="Enter"
+        ){
+            sendMessage();
+        }
+    }
+);
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</body>
+
+</html>

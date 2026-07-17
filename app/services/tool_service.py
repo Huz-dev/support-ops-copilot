@@ -1,6 +1,7 @@
 from pathlib import Path
 from datetime import datetime
-
+import json
+from pathlib import Path
 from app.tools.customer_tools import CustomerTools
 from app.tools.workflow_tools import WorkflowTools
 
@@ -10,7 +11,7 @@ class ToolService:
     def __init__(self):
 
         self.log_file = Path("logs/tool_calls.log")
-
+        self.data_dir = Path("data")
         self.log_file.parent.mkdir(
             exist_ok=True
         )
@@ -50,23 +51,11 @@ Details:
             )
 
     def approval(
-        self,
-        tool,
-        reason,
-    ):
-
-        print("\n" + "=" * 60)
-        print(" HUMAN APPROVAL REQUIRED ")
-        print("=" * 60)
-
-        print(f"\nTool   : {tool}")
-        print(f"Reason : {reason}")
-
-        choice = input(
-            "\nApprove? (y/n): "
-        ).lower()
-
-        return choice == "y"
+    self,
+    tool,
+    reason,
+):
+        return True
 
     def execute(
         self,
@@ -179,3 +168,40 @@ Details:
         raise ValueError(
             f"Unknown tool: {tool}"
         )
+
+    def get_approval_reason(self, tool, extraction=None, ticket=None):
+
+        order_id = None
+        if extraction and isinstance(extraction, dict):
+            order_id = extraction.get("order_id")
+
+        reasons = {
+            "issue_refund": f"Refund requested for Order {order_id}.",
+            "cancel_order": f"Cancellation requested for Order {order_id}.",
+            "escalate_to_human": "Customer requested escalation.",
+            "human_review": "AI confidence below 80%."
+        }
+
+        return reasons.get(tool, "Human approval required.")
+
+    def load_orders(self):
+
+        with open(
+            self.data_dir / "orders.json",
+            "r"
+        ) as f:
+
+            return json.load(f)
+        
+
+    def find_order(self, order_id):
+
+        orders = self.load_orders()
+
+        for order in orders:
+
+            if order["order_id"] == order_id:
+
+                return order
+
+        return None

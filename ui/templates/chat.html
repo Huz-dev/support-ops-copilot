@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Chat</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+  {% include "sidebar.html" %}
+
+    <main class="main">
+
+    <div class="chat-page">
+
+        <div id="chatMessages" class="chat-history">
+
+            <div class="welcome">
+
+                <h1>SupportOps Copilot</h1>
+
+                <p>
+                    Your AI assistant.
+                </p>
+
+                <div class="suggestions">
+
+                    <button class="suggestion">
+                        Explain this ticket
+                    </button>
+
+                    <button class="suggestion">
+                        Help testing
+                    </button>
+
+                    <button class="suggestion">
+                        Understanding policies
+                    </button>
+
+                    <button class="suggestion">
+                        Draft an email
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="chat-bottom">
+
+            <input
+                id="chatInput"
+                type="text"
+                placeholder="Message SupportOps..."
+            >
+
+            <button id="sendChat">
+
+                ➜
+
+            </button>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+</div>
+
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+
+</body>
+
+</html>

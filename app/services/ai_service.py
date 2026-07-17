@@ -81,10 +81,19 @@ class AIService:
     # Draft Reply
     ####################################################
 
-    def draft(self, ticket: str):
 
+    def draft(
+        self,
+        ticket: str,
+        tool_results=None,
+        context="",
+    ):
         return self._generate(
-            Prompts.draft(ticket)
+            Prompts.draft(
+                ticket=ticket,
+                tool_results=tool_results,
+                context=context,
+            )
         )
 
     ####################################################
@@ -107,7 +116,35 @@ class AIService:
         )
     
     def plan(self, ticket):
+        return self._generate(
+            Prompts.planner(ticket)
+        )
+    def chat(self, message, history=None):
+        if history is None:
+            history = []
+
+        conversation = ""
+        for item in history:
+            conversation += f"""
+{item['role']}:
+{item['content']}
+"""
+
+        prompt = f"""
+You are SupportOps AI.
+
+This is the conversation history:
+
+{conversation}
+
+Current User Message:
+{message}
+
+Reply naturally and professionally.
+"""
 
         return self._generate(
-             Prompts.planner(ticket)
-    )
+            prompt,
+            json_output=False,
+            temperature=0.3
+        )

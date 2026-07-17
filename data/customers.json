@@ -1,0 +1,82 @@
+[
+    {
+        "customer_id": "C001",
+        "name": "John Smith",
+        "email": "john.smith@email.com",
+        "membership": "Standard",
+        "previous_orders": 12,
+        "country": "USA"
+    },
+    {
+        "customer_id": "C002",
+        "name": "Sarah Ahmed",
+        "email": "sarah.ahmed@email.com",
+        "membership": "Gold",
+        "previous_orders": 7,
+        "country": "Pakistan"
+    },
+    {
+        "customer_id": "C003",
+        "name": "Ali Khan",
+        "email": "ali.khan@email.com",
+        "membership": "Silver",
+        "previous_orders": 3,
+        "country": "Pakistan"
+    },
+    {
+        "customer_id": "C004",
+        "name": "Emily Johnson",
+        "email": "emily.johnson@email.com",
+        "membership": "Gold",
+        "previous_orders": 9,
+        "country": "Canada"
+    },
+    {
+        "customer_id": "C005",
+        "name": "Michael Brown",
+        "email": "michael.brown@email.com",
+        "membership": "Standard",
+        "previous_orders": 2,
+        "country": "USA"
+    },
+    {
+        "customer_id": "C006",
+        "name": "David Wilson",
+        "email": "david.wilson@email.com",
+        "membership": "Silver",
+        "previous_orders": 5,
+        "country": "UK"
+    },
+    {
+        "customer_id": "C007",
+        "name": "Jessica Lee",
+        "email": "jessica.lee@email.com",
+        "membership": "Standard",
+        "previous_orders": 4,
+        "country": "Australia"
+    },
+    {
+        "customer_id": "C008",
+        "name": "Robert Davis",
+        "email": "robert.davis@email.com",
+        "membership": "Platinum",
+        "previous_orders": 38,
+        "country": "USA"
+    },
+    {
+        "customer_id": "C009",
+        "name": "Sophia Garcia",
+        "email": "sophia.garcia@email.com",
+        "membership": "Gold",
+        "previous_orders": 11,
+        "country": "Spain"
+    },
+    {
+        "customer_id": "C010",
+        "name": "Daniel Martinez",
+        "email": "daniel.m@email.com",
+        "membership": "Standard",
+        "previous_orders": 6,
+        "country": "Mexico"
+    }
+]

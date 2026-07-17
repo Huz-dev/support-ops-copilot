@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "title": "Refund Request",
+        "scenario": "Refund + Human Approval",
+        "ticket": "Hello Support Team,\n\nMy name is John Smith.\nEmail: john.smith@email.com\n\nI was charged twice for order 92381.\n\nPlease process a refund.\n\nThank you."
+    },
+    {
+        "id": 2,
+        "title": "Shipping Delay",
+        "scenario": "Order Lookup",
+        "ticket": "Hello,\n\nMy name is Sarah Ahmed.\nEmail: sarah.ahmed@email.com\n\nMy order 65421 was supposed to arrive yesterday but I haven't received it.\n\nCould you please check the delivery status?\n\nThank you."
+    },
+    {
+        "id": 3,
+        "title": "Damaged Product",
+        "scenario": "Replacement Workflow",
+        "ticket": "Hello,\n\nMy name is Ali Khan.\nEmail: ali.khan@email.com\n\nOrder 78543 arrived with a cracked monitor.\n\nI would like a replacement.\n\nRegards."
+    },
+    {
+        "id": 4,
+        "title": "Warranty Claim",
+        "scenario": "Warranty Support",
+        "ticket": "Hello,\n\nMy name is Emily Johnson.\nEmail: emily.johnson@email.com\n\nOrder 88771 stopped working after three months.\n\nI would like to claim my warranty."
+    },
+    {
+        "id": 5,
+        "title": "Password Reset",
+        "scenario": "Authentication",
+        "ticket": "Hello,\n\nMy name is Michael Brown.\nEmail: michael.brown@email.com\n\nI forgot my password and cannot log in.\n\nPlease help."
+    },
+    {
+        "id": 6,
+        "title": "Account Locked",
+        "scenario": "Authentication",
+        "ticket": "Hello,\n\nMy name is David Wilson.\nEmail: david.wilson@email.com\n\nMy account has been locked after multiple login attempts.\n\nPlease unlock it."
+    },
+    {
+        "id": 7,
+        "title": "Cancel Order",
+        "scenario": "Order Cancellation",
+        "ticket": "Hello,\n\nMy name is Jessica Lee.\nEmail: jessica.lee@email.com\n\nPlease cancel order 45612.\n\nI ordered the wrong item."
+    },
+    {
+        "id": 8,
+        "title": "VIP Customer",
+        "scenario": "Priority Support",
+        "ticket": "Hello,\n\nMy name is Robert Davis.\nEmail: robert.davis@email.com\n\nI am a Platinum member.\n\nOrder 11223 has not arrived.\n\nPlease prioritize my request."
+    },
+    {
+        "id": 9,
+        "title": "Knowledge Base Question",
+        "scenario": "RAG Demo",
+        "ticket": "Hello,\n\nMy name is Sophia Garcia.\nEmail: sophia.garcia@email.com\n\nHow do I connect my Smart Home Hub to Wi-Fi?\n\nI couldn't find the instructions."
+    },
+    {
+        "id": 10,
+        "title": "Angry Customer",
+        "scenario": "Escalation",
+        "ticket": "Hello,\n\nMy name is Daniel Martinez.\nEmail: daniel.m@email.com\n\nThis is my third complaint.\n\nOrder 44567 is still missing.\n\nI want this escalated immediately."
+    }
+]

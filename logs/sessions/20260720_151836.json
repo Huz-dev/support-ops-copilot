@@ -1,0 +1,52 @@
+{
+    "session_id": "20260720_151836",
+    "timestamp": "2026-07-20 15:18:36.548227",
+    "ticket": "Hello Support Team,\n\nMy name is John Smith.\nEmail: john.smith@email.com\n\nI was charged twice for order 92381.\n\nPlease process a refund.\n\nThank you.",
+    "plan": {
+        "category": "refund_request",
+        "urgency": "high",
+        "use_rag": false,
+        "tools": [
+            "lookup_order_status",
+            "issue_refund"
+        ],
+        "reason": "Customer was charged twice for the same order and needs a refund"
+    },
+    "classification": {
+        "category": "Billing",
+        "urgency": "Medium",
+        "reason": "Double charge for an order",
+        "confidence": 0.95
+    },
+    "extraction": {
+        "customer_name": "John Smith",
+        "order_id": "92381",
+        "email": "john.smith@email.com",
+        "issue": "charged twice",
+        "confidence": 0.9
+    },
+    "tool_results": [
+        {
+            "tool": "lookup_order_status",
+            "result": {
+                "order_id": "92381",
+                "status": "Shipped",
+                "estimated_delivery": "2 business days",
+                "checked_at": "2026-07-20 15:18:33.880450"
+            }
+        },
+        {
+            "tool": "issue_refund",
+            "result": {
+                "success": true,
+                "refund_id": "RF-92381",
+                "processed_at": "2026-07-20 15:18:33.883071"
+            }
+        }
+    ],
+    "email": {
+        "subject": "Re: Order 92381 Refund",
+        "body": "Dear John Smith, thank you for reaching out. We've reviewed your order 92381, which is currently shipped with an estimated delivery in 2 business days. Regarding the duplicate charge, we're pleased to inform you that a refund has already been successfully processed (Refund ID: RF-92381). If you have any further questions, please don't hesitate to contact us.",
+        "confidence": 0.9
+    }
+}

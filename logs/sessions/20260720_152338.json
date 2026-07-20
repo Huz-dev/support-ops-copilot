@@ -1,0 +1,52 @@
+{
+    "session_id": "20260720_152338",
+    "timestamp": "2026-07-20 15:23:38.205386",
+    "ticket": "Hello,\n\nMy name is Emily Johnson.\nEmail: emily.johnson@email.com\n\nOrder 88771 stopped working after three months.\n\nI would like to claim my warranty.",
+    "plan": {
+        "category": "warranty claim",
+        "urgency": "medium",
+        "use_rag": false,
+        "tools": [
+            "lookup_order_status",
+            "lookup_customer"
+        ],
+        "reason": "Customer is claiming warranty for a non-functional order"
+    },
+    "classification": {
+        "category": "Technical",
+        "urgency": "Medium",
+        "reason": "Customer is reporting a product malfunction and wants to claim warranty",
+        "confidence": 0.95
+    },
+    "extraction": {
+        "customer_name": "Emily Johnson",
+        "order_id": "88771",
+        "email": "emily.johnson@email.com",
+        "issue": "stopped working after three months",
+        "confidence": 0.9
+    },
+    "tool_results": [
+        {
+            "tool": "lookup_order_status",
+            "result": {
+                "order_id": "88771",
+                "status": "Delivered",
+                "estimated_delivery": "Delivered",
+                "checked_at": "2026-07-20 15:23:36.519791"
+            }
+        },
+        {
+            "tool": "lookup_customer",
+            "result": {
+                "customer": "Emily Johnson",
+                "status": "Found",
+                "orders": "See customers.json"
+            }
+        }
+    ],
+    "email": {
+        "subject": "Re: Warranty Claim for Order 88771",
+        "body": "Dear Emily Johnson, thank you for reaching out. I've checked on the status of your order 88771, and it shows as delivered. I'm happy to assist you with your warranty claim. Please allow me to look into this further.",
+        "confidence": 0.9
+    }
+}

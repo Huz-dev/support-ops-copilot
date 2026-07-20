@@ -11,6 +11,10 @@ class SupportAgent:
         self.tools = ToolService()
         self.memory = ConversationMemory()
         self.logger = LoggerService()
+        self.rag = RAGService()
+        self.rag.ingest()
+        if self.rag.vector_store.collection.count() == 0:
+            self.rag.ingest()
 
     def execute_tools(
         self,
@@ -68,6 +72,9 @@ class SupportAgent:
 
 
     def process_ticket(self, ticket):
+        rag = {
+             "retrieved": []
+            }
         self.memory.add("user", ticket)
         plan = self.ai.plan(ticket)
         print(plan)
@@ -142,7 +149,9 @@ class SupportAgent:
 
         if plan.get("use_rag"):
             rag = self.rag.ask(ticket)
-
+            print("\nRAG RESULTS:")
+            print(rag)
+            print("\n")
             context = "\n\n".join([doc["document"] for doc in rag["retrieved"]])
 
         tool_summary = ""
@@ -231,6 +240,11 @@ Ticket Status:
             "context": context,
             "email": email,
             "memory": self.memory.history(),
+            "retrieved_docs": (
+             rag["retrieved"]
+             if plan.get("use_rag")
+                else []
+                ),
         }
 
     def complete_after_approval(
@@ -329,6 +343,11 @@ Refund Status:
             "context": context,
             "email": email,
             "memory": self.memory.history(),
+            "retrieved_docs": (
+            rag["retrieved"]
+                if plan.get("use_rag")
+                else []
+                ),
         }
 
 

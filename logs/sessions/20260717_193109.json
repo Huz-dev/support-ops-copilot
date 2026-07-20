@@ -1,0 +1,33 @@
+{
+    "session_id": "20260717_193109",
+    "timestamp": "2026-07-17 19:31:09.451896",
+    "ticket": "What is your refund policy?",
+    "plan": {
+        "category": "refund policy",
+        "urgency": "low",
+        "use_rag": true,
+        "tools": [
+            "none"
+        ],
+        "reason": "Policy question"
+    },
+    "classification": {
+        "category": "Billing",
+        "urgency": "Low",
+        "reason": "Customer is inquiring about refund policy, which is a general billing inquiry",
+        "confidence": 0.95
+    },
+    "extraction": {
+        "customer_name": "",
+        "order_id": "",
+        "email": "",
+        "issue": "refund policy inquiry",
+        "confidence": 0.9
+    },
+    "tool_results": [],
+    "email": {
+        "subject": "Refund Policy Inquiry",
+        "body": "Dear Customer, thank you for reaching out. Unfortunately, I don't have any information about your order status. Our refund policy can be found in our Knowledge Base, but I'd be happy to help you with any questions or concerns. If you have any specific questions or would like to request a refund, please let me know and I'll do my best to assist you.",
+        "confidence": 0.9
+    }
+}

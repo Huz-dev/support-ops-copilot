@@ -1,0 +1,43 @@
+{
+    "session_id": "20260717_190749",
+    "timestamp": "2026-07-17 19:07:49.019947",
+    "ticket": "Hello,\n\nMy name is Sarah Ahmed.\nEmail: sarah.ahmed@email.com\n\nMy order 65421 was supposed to arrive yesterday but I haven't received it.\n\nCould you please check the delivery status?\n\nThank you.",
+    "plan": {
+        "category": "order status",
+        "urgency": "medium",
+        "use_rag": false,
+        "tools": [
+            "lookup_order_status"
+        ],
+        "reason": "Customer is inquiring about the status of their order"
+    },
+    "classification": {
+        "category": "Shipping",
+        "urgency": "Medium",
+        "reason": "Customer has not received their order and is inquiring about the delivery status",
+        "confidence": 0.95
+    },
+    "extraction": {
+        "customer_name": "Sarah Ahmed",
+        "order_id": "65421",
+        "email": "sarah.ahmed@email.com",
+        "issue": "Order not received",
+        "confidence": 0.9
+    },
+    "tool_results": [
+        {
+            "tool": "lookup_order_status",
+            "result": {
+                "order_id": "65421",
+                "status": "Delayed",
+                "estimated_delivery": "5 business days",
+                "checked_at": "2026-07-17 19:07:48.612736"
+            }
+        }
+    ],
+    "email": {
+        "subject": "Re: Order 65421 Delivery Status",
+        "body": "Dear Sarah, thank you for reaching out. I've checked on your order 65421, and it's currently delayed. The estimated delivery time is now 5 business days. I apologize for the inconvenience and appreciate your patience. If you have any further questions, please don't hesitate to ask.",
+        "confidence": 0.9
+    }
+}

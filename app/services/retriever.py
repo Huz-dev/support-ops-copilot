@@ -35,6 +35,7 @@ class Retriever:
             metadatas,
             distances,
         ):
+            
 
             retrieved.append(
                 {

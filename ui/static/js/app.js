@@ -21,7 +21,10 @@ const refundStatus = document.getElementById("refundStatus");
 const timeline = document.getElementById("timeline");
 
 const emailCard = document.getElementById("emailCard");
-
+const knowledgeBox =
+    document.getElementById(
+        "knowledgeBox"
+    );
 
 
 let lastResult = null;
@@ -168,6 +171,8 @@ function displayResult(data) {
     refundStatus.textContent = "-";
 
     timeline.innerHTML = "";
+    knowledgeBox.innerHTML =
+    "No documents used.";
 
 
     // Timeline
@@ -179,6 +184,8 @@ function displayResult(data) {
     addTimeline("📋", "Information extracted");
 
     addTimeline("🛠️", "Execution plan created");
+
+    
 
 
     data.tool_results.forEach(item => {
@@ -231,15 +238,46 @@ function displayResult(data) {
     });
 
 
-    if (data.context) {
+if(
+    data.retrieved_docs &&
+    data.retrieved_docs.length > 0
+){
 
-        addTimeline(
-            "📚",
-            "Knowledge Base consulted"
-        );
+    addTimeline(
+        "📚",
+        "Knowledge Base consulted"
+    );
 
-    }
+    knowledgeBox.innerHTML="";
 
+    data.retrieved_docs.forEach(
+        (doc,index)=>{
+
+            knowledgeBox.innerHTML += `
+    <div class="kb-card">
+
+        <div class="kb-header">
+            <h3>${doc.source}</h3>
+            <span>
+                Match Score:
+                ${doc.score}
+            </span>
+        </div>
+
+        <div class="kb-info">
+            <strong>Chunk:</strong>
+            ${doc.chunk}
+        </div>
+
+        <div class="kb-content">
+            ${doc.document}
+        </div>
+
+    </div>
+`;
+        }
+    );
+}
 
     addTimeline(
         "✉️",

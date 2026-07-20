@@ -3,6 +3,7 @@ import json
 from flask import Flask, render_template, request, jsonify
 from pathlib import Path
 from app.services.agent import SupportAgent
+from app.services.rag_service import RAGService
 from app.services.support_chat_agent import (
     SupportChatAgent
 )

@@ -95,8 +95,10 @@ class RAGService:
         "answer": answer,
         "context": context,
         "retrieved": retrieved,
-        "sources": [
-            r["metadata"]["source"]
-            for r in retrieved
-        ],
-    }
+        "sources": list(
+            set(
+                r["source"]
+                for r in retrieved
+                )
+    ),
+}
